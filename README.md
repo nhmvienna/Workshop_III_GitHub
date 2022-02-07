@@ -5,13 +5,13 @@ For additional very basic info to the usage of git, see [here](https://github.co
 
 ## Index:
 
-1.  [Github Desktop](https://github.com/nhmvienna/Workshop_III_GitHub#1-github-desktop)
+1.  [GitHub Desktop](https://github.com/nhmvienna/Workshop_III_GitHub#1-github-desktop)
 
-2.  [Github and ATOM](https://github.com/nhmvienna/Workshop_III_GitHub#2-github--atom)
+2.  [GitHub and ATOM](https://github.com/nhmvienna/Workshop_III_GitHub#2-github--atom)
 
 * * *
 
-### 1. Github Desktop
+### 1. GitHub Desktop
 
 a) Obtain GitHub desktop from [here](https://desktop.github.com/)
 ![GD](images/GithubDesktop/GD.png)
@@ -44,17 +44,17 @@ In the bottom left, you can now add a description and commit the changes
 
 ![changes](images/GithubDesktop/image007.png)
 
-h) Once the local changes are committed, you also need to upload these to GitHub. Press “Push origin” on the right hand side. Then you can see your updates on the Github page of the repository
+h) Once the local changes are committed, you also need to upload these to GitHub. Press “Push origin” on the right hand side. Then you can see your updates on the GitHub page of the repository
 
 ![commit](images/GithubDesktop/image009.png)
 
 ![updates](images/GithubDesktop/image010.png)
 
-### 2. Github & ATOM
+### 2. GitHub & ATOM
 
 Before you start, have a quick refresher what Atom is and how Atom works, see [here](https://github.com/nhmvienna/FirstSteps/blob/main/ATOMbasics.md)
 
-##### a) setting up Github on Atom
+##### a) setting up GitHub on Atom
 
 Find login field on GitHub tab on the right of the Atom window
 
@@ -69,7 +69,7 @@ Get your token by logging into your browser under <https://github.atom.io/login>
 ##### b) Clone a repository
 
 ```bash
-## create github directory in home folder
+## create GitHub directory in home folder
 
 mkdir ~/github
 
