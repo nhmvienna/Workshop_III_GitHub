@@ -5,9 +5,9 @@ For additional very basic info to the usage of git, see [here](https://github.co
 
 ## Index:
 
-1.  [Github Desktop](Workshop_III_GitHub#1-github-desktop)
+1.  [Github Desktop](https://github.com/nhmvienna/Workshop_III_GitHub#1-github-desktop)
 
-2.  [Github and ATOM](/Workshop_III_GitHub#2-github--atom)
+2.  [Github and ATOM](https://github.com/nhmvienna/Workshop_III_GitHub#2-github--atom)
 
 * * *
 
@@ -138,6 +138,6 @@ When you make edits to your files under version control, the changes in the text
 ![changes](images/GithubAtom/image015.png)
 
 As before, you need to stage the changes and add a description before committing the changes.
-Once this is done, you can push the changes, by pressing the same small button as before
+Once this is done, you can push the changes, by pressing the same small button as before.
 
 ![final](images/GithubAtom/image014.png)
