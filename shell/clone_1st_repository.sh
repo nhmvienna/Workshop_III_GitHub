@@ -4,6 +4,8 @@ mkdir ~/github
 
 cd ~/github
 
+## check if your git is set up correctly
+
 git config --global --list
 
 # clone My1stRepo repository
