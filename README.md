@@ -2,9 +2,11 @@
 
 ## Index:
 
-1.  **[Github Desktop](<>)**
+1.  [Github Desktop](Workshop_III_GitHub#1-github-desktop)
 
-2.  **[Github and ATOM](<>)**
+2.  [Github and ATOM](/Workshop_III_GitHub#2-github--atom)
+
+* * *
 
 ### 1. Github Desktop
 
@@ -43,7 +45,7 @@ h) Once the local changes are committed, you also need to upload these to GitHub
 
 ![commit](images/GithubDesktop/image009.png)
 
-![updates](images/GithubDesktop/image010.png)
+## ![updates](images/GithubDesktop/image010.png)
 
 ### 2. Github & ATOM
 
