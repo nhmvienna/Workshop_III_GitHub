@@ -1,19 +1,19 @@
-# Workshop III - Github
+# Workshop III - GitHub
 
 The slides to this workshop can be found [here](<>).  
-For additional very basic info to the usage of git, see [here](https://github.com/nhmvienna/FirstSteps/blob/main/UNIXBasics/UNIXBasics.md#vii-using-git-for-version-control)
+For additional very basic info to the usage of git, see [here](https://GitHub.com/nhmvienna/FirstSteps/blob/main/UNIXBasics/UNIXBasics.md#vii-using-git-for-version-control)
 
 ## Index:
 
-1.  [GitHub Desktop](https://github.com/nhmvienna/Workshop_III_GitHub#1-github-desktop)
+1.  [GitHub Desktop](https://GitHub.com/nhmvienna/Workshop_III_GitHub#1-github-desktop)
 
-2.  [GitHub and ATOM](https://github.com/nhmvienna/Workshop_III_GitHub#2-github--atom)
+2.  [GitHub and ATOM](https://GitHub.com/nhmvienna/Workshop_III_GitHub#2-github--atom)
 
 * * *
 
 ### 1. GitHub Desktop
 
-a) Obtain GitHub desktop from [here](https://desktop.github.com/)
+a) Obtain GitHub desktop from [here](https://desktop.GitHub.com/)
 ![GD](images/GithubDesktop/GD.png)
 
 b) Once installed, choose File > Option… to log in to your account
@@ -52,7 +52,7 @@ h) Once the local changes are committed, you also need to upload these to GitHub
 
 ### 2. GitHub & ATOM
 
-Before you start, have a quick refresher what Atom is and how Atom works, see [here](https://github.com/nhmvienna/FirstSteps/blob/main/ATOMbasics.md)
+Before you start, have a quick refresher what Atom is and how Atom works, see [here](https://GitHub.com/nhmvienna/FirstSteps/blob/main/ATOMbasics.md)
 
 ##### a) setting up GitHub on Atom
 
@@ -60,7 +60,7 @@ Find login field on GitHub tab on the right of the Atom window
 
 ![login](images/GithubAtom/image001.png)
 
-Get your token by logging into your browser under <https://github.atom.io/login>. Then copy token and paste into empty field in Atom
+Get your token by logging into your browser under <https://GitHub.atom.io/login>. Then copy token and paste into empty field in Atom
 
 ![token](images/GithubAtom/image002.png)
 
@@ -83,15 +83,15 @@ git config --global --list
 
 ## note that you need your access tocken for that
 
-firefox https://github.atom.io/login
+firefox https://GitHub.atom.io/login
 
 # then enter the tocken when prompted
 
-git clone https://capoony@github.com/capoony/My1stRep
+git clone https://capoony@GitHub.com/capoony/My1stRep
 
 # 2) clone public repository
 
-git clone https://github.com/nhmvienna/Workshop_III_GitHub
+git clone https://GitHub.com/nhmvienna/Workshop_III_GitHub
 ```
 
 See also [here](shell/clone_repository.sh)
