@@ -4,68 +4,16 @@ The slides to this workshop can be found [here](Workshop%20III%20-%20Github.pdf)
 The recordings of the Workshop can be found on the NHM intranet under `I:\Public\mkapun\FrontiersInMolecularSystematics\Workshop_III_GitHub`  
 For additional very basic info to the usage of git, see [here](https://GitHub.com/nhmvienna/FirstSteps/blob/main/UNIXBasics/UNIXBasics.md#vii-using-git-for-version-control)
 
-## Index:
+### 1. GitHub & VSCode
 
-1.  [GitHub Desktop](https://GitHub.com/nhmvienna/Workshop_III_GitHub#1-github-desktop)
+Before you start, have a quick refresher what VSCode is and how VSCode works, see [here](https://GitHub.com/nhmvienna/FirstSteps/blob/main/VisualStudioCode_basics.md)
 
-2.  [GitHub and ATOM](https://GitHub.com/nhmvienna/Workshop_III_GitHub#2-github--atom)
+##### a) setting up GitHub on VSCode
 
-* * *
+Find login field on GitHub tab on the right of the VSCode window
 
-### 1. GitHub Desktop
-
-a) Obtain GitHub desktop from [here](https://desktop.GitHub.com/)
-![GD](images/GithubDesktop/GD.png)
-
-b) Once installed, choose File > Option… to log in to your account
-
-![Options](images/GithubDesktop/image003.png)
-
-![Login](images/GithubDesktop/image002.png)
-
-c) Once successfully logged in, GitHub Desktop will list all your repositories. Pick your previously created 1st repository. Choose the path to where you want to put the files on your computer
-
-![Choose](images/GithubDesktop/image006.png)
-
-d) The overview window shows that there are no current changes to “My1stRep”
-
-![overview](images/GithubDesktop/image005.png)
-
-e) Now click “Show in Explorer”. This will show all the files that GitHub Desktop copied.
-
-![explorer](images/GithubDesktop/image004.png)
-
-f) Double click on README and open with the Editor program. Now you can edit the text and, for example, try some markdown codes.
-Then save your changes and go back to GitHub Desktop
-
-![edit](images/GithubDesktop/image001.png)
-
-g) GitHub Desktop shows that README.md was modified and highlights the changes in the right-hand panel.
-In the bottom left, you can now add a description and commit the changes
-
-![changes](images/GithubDesktop/image007.png)
-
-h) Once the local changes are committed, you also need to upload these to GitHub. Press “Push origin” on the right hand side. Then you can see your updates on the GitHub page of the repository
-
-![commit](images/GithubDesktop/image009.png)
-
-![updates](images/GithubDesktop/image010.png)
-
-### 2. GitHub & ATOM
-
-Before you start, have a quick refresher what Atom is and how Atom works, see [here](https://GitHub.com/nhmvienna/FirstSteps/blob/main/ATOMbasics.md)
-
-##### a) setting up GitHub on Atom
-
-Find login field on GitHub tab on the right of the Atom window
-
-![login](images/GithubAtom/image001.png)
-
-Get your token by logging into your browser under <https://GitHub.atom.io/login>. Then copy token and paste into empty field in Atom
-
-![token](images/GithubAtom/image002.png)
-
-![token2](images/GithubAtom/image010.png)
+![login](images/GithubVSCode/Login.jpg)
+![login2](images/GithubVSCode/Login2.jpg)
 
 ##### b) Clone a repository
 
@@ -82,10 +30,6 @@ git config --global --list
 
 # 1) clone private My1stRepo repository
 
-## note that you need your access tocken for that
-
-firefox https://GitHub.atom.io/login
-
 # then enter the tocken when prompted
 
 git clone https://capoony@GitHub.com/capoony/My1stRep
@@ -97,48 +41,99 @@ git clone https://GitHub.com/nhmvienna/Workshop_III_GitHub
 
 See also [here](shell/clone_repository.sh)
 
+Now add the newly cloned folder to the Workspace in VSCode by pressing `File` -> `Add Folder to Workspace...` and select the folder you just cloned.
+
 ##### c) Publish a repo on GitHub
 
-Add a new project folder which contains the data that you want to publish, or create a new folder and add it as a project folder
+Create a new project folder which contains the data that you want to publish
 
-![add](images/GithubAtom/image006.png)
+```bash
+## create GitHub directory in home folder
 
-![explorer](images/GithubAtom/image004.png)
+mkdir -p ~/github/My2ndRepo/data
 
-Once the Folder appears in the project tab, you can see, that it is neither initialized, i.e. under version control with git, nor published on GitHub
+cd ~/github/My2ndRepo
 
-![added](images/GithubAtom/image005.png)
+## lets add an empty text file in the data folder
+touch data/README.md
 
-Once you press “initialize”, you can decide where to publish
-Please **ALWAYS** use your private account, unless the repo is (1) a software project to be published or (2) a resource for the NHM. By default, it is published public, which may be not what you want!
+## lets add a readme file in the main folder
+echo '''
+# Wow, second Repo 
 
-![publish](images/GithubAtom/image008.png)
+![GitHub Logo](https://miro.medium.com/v2/resize:fit:620/1*FpEDNFF2CDqpmdkSHXFpmA.jpeg)
+
+:+1:
+
+''' > README.md
+```
+
+Now add the newly created folder to the Workspace in VSCode by pressing `File` -> `Add Folder to Workspace...` and select the folder you just created.
+
+Then press `Ctrl+Shift+P` and type publish, or select `Publish to GitHub`
 
 A new /.git folder will appear within the project, which represents the git repository.
 New files will appear in green as unstaged (and thus not yet version-controlled) files.
 
-![unstaged](images/GithubAtom/image009.png)
+Let's make a new gitignore file, which will tell git to ignore certain files or folders, in this case, we will ignore the data folder
 
-Once they are staged, they are ready to be committed
+```bash
 
-![staged](images/GithubAtom/image011.png)
+## add gitignore file
+echo '''# ignore data folder
+data/
+''' > .gitignore
 
-You need to write a description for every commit, in this case, it is our “initial commit”
+## lets make a second text file in the data folder
+echo "This is a second file in the data folder" > data/second_file.txt
 
-![committed](images/GithubAtom/image012.png)
+## lets make a third text file in the main folder
+echo "This is a third file in the main folder" > third_file.txt
+```
 
-Last, but not least you need to “publish”, which, is very well hidden at the right bottom.
-Congrats, now, your repo is online!
+- Open the source control tab on the left side of the VSCode window, which looks like a branch icon. Therefore use the shortcut `Ctrl+Alt+B` or click on the secondary side bar  icon on the top left side of the VSCode window.
 
-![publish](images/GithubAtom/image013.png)
+- Now, you can see the changes in the Source Control tab on the left side of the VSCode window.
 
-##### d) Make changes to your repo
+- Type a brief description of the changes you made in the text box at the top of the Source Control tab.
 
-When you make edits to your files under version control, the changes in the text will be highlighted by vertical bars in the editor and by changes to the color of the filename
+- Then click on the plus icon next to the file name to stage the changes, or click on the plus icon next to the "Changes" header to stage all changes at once.
 
-![changes](images/GithubAtom/image015.png)
+- Now you can commit by pressing the `Commit` button, which is also the checkmark icon at the top of the Source Control tab.
 
-As before, you need to stage the changes and add a description before committing the changes.
-Once this is done, you can push the changes, by pressing the same small button as before.
+- Finally, you can push the changes to GitHub by clicking on the small button with the arrow pointing upwards at the top of the Source Control tab.
 
-![final](images/GithubAtom/image014.png)
+#### d) let's check the changes online
+
+```bash
+open https://github.com/capoony/My2ndRepo
+```
+
+##### e) let's make some changes online
+
+- Go to the `README.md` file in the `My2ndRepo` repository on GitHub and click on the pencil icon to edit the file.
+
+- In the sidebar on the right click on the three dots next to the repo name and choose `Fetch` to fetch the changes you made online.
+
+- Now you can see the changes in the Source Control tab on the left side of the VSCode window.
+
+- Pull the changes by clicking on the small button with arrow pointing downwards at the top of the Source Control tab.
+
+##### f) let's make some changes in VSCode
+
+- Go to the `README.md` file in the `My2ndRepo` repository on your local machine and add a new line with the text `new branch`.
+Then save the file.
+
+- Now you can see the changes in the Source Control tab on the left side of the VSCode window.
+
+- Create a new branch by clicking on the branch icon at the top of the Source Control tab and selecting `Create Branch...`. Name the branch `new`.
+
+- Now press `Publish Branch` to publish the new branch to GitHub.
+
+- Type a brief description of the changes you made in the text box at the top of the Source Control tab.
+
+- Then click on the plus icon next to the file name to stage the changes, or click on the plus icon next to the "Changes" header to stage all changes at once.
+
+- Now you can commit by pressing the `Commit` button, which is also the checkmark icon at the top of the Source Control tab.
+
+- Finally, you can push the changes to GitHub by clicking on the small button with the arrow pointing upwards at the top of the Source Control tab.

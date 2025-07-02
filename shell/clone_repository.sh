@@ -10,12 +10,6 @@ git config --global --list
 
 # 1) clone private My1stRepo repository
 
-## note that you need your access tocken for that
-
-firefox https://github.atom.io/login
-
-# then enter the tocken when prompted
-
 git clone https://capoony@github.com/capoony/My1stRep
 
 # 2) clone public repository
