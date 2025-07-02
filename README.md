@@ -109,7 +109,7 @@ echo "This is a third file in the main folder" > third_file.txt
 open https://github.com/capoony/My2ndRepo
 ```
 
-##### e) let's make some changes online
+#### e) let's make some additional changes online
 
 - Go to the `README.md` file in the `My2ndRepo` repository on GitHub and click on the pencil icon to edit the file.
 
@@ -119,7 +119,7 @@ open https://github.com/capoony/My2ndRepo
 
 - Pull the changes by clicking on the small button with arrow pointing downwards at the top of the Source Control tab.
 
-##### f) let's make some changes in VSCode
+#### f) let's make some changes in VSCode
 
 - Go to the `README.md` file in the `My2ndRepo` repository on your local machine and add a new line with the text `new branch`.
 Then save the file.
