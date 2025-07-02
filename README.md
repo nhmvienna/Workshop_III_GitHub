@@ -12,8 +12,8 @@ Before you start, have a quick refresher what VSCode is and how VSCode works, se
 
 Find login field on GitHub tab on the right of the VSCode window
 
-![login](images/GithubVSCode/Login.jpg)
-![login2](images/GithubVSCode/Login2.jpg)
+![login](images/GitHubVSCode/Login.jpg)
+![login2](images/GitHubVSCode/Login2.jpg)
 
 ##### b) Clone a repository
 
