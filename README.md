@@ -1,7 +1,7 @@
 # Workshop III - GitHub
 
-The slides to this workshop can be found [here](Workshop%20III%20-%20Github.pdf)  
-The recordings of the Workshop can be found on the NHM intranet under `I:\Public\mkapun\FrontiersInMolecularSystematics\Workshop_III_GitHub`  
+The slides to this workshop can be found [here](https://docs.google.com/presentation/d/1Gpgd5MocTWWqo_unQImQB14VJrkZsUmto1m_VaD_Ii0/edit?slide=id.g112930cb4ee_2_50#slide=id.g112930cb4ee_2_50)
+
 For additional very basic info to the usage of git, see [here](https://GitHub.com/nhmvienna/FirstSteps/blob/main/UNIXBasics/UNIXBasics.md#vii-using-git-for-version-control)
 
 ### 1. GitHub & VSCode
