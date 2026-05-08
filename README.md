@@ -4,7 +4,68 @@ The slides to this workshop can be found [here](https://docs.google.com/presenta
 
 For additional very basic info to the usage of git, see [here](https://GitHub.com/nhmvienna/FirstSteps/blob/main/UNIXBasics/UNIXBasics.md#vii-using-git-for-version-control)
 
-### 1. GitHub & VSCode
+### 1. Git, GitHub and SSH authetication
+
+The first thing you will need to do is to set your Name and GitHub account email to enable syncing to your GitHub cloud.
+
+```bash
+git config --global user.name "Your Name"
+git config --global user.email "<your@email.com>"
+```
+Verify your configuration 
+
+```bash
+git config --list
+```
+
+As a next step, you will need to set up an SSH-key, which GitHub can use to login from your computer to the GitHub account in the cloud. Password authetication is no longer supported. In terminal, you will need to set a new pair of private and public SSH keys
+
+```bash
+ssh-keygen -t ed25519 -C "<your@email.com>"
+```
+
+This will create two files in the hidden `./ssh/` directory of your home folder
+
+```bash
+~/.ssh/id_ed25519
+~/.ssh/id_ed25519.pub
+```
+
+Next, whe will start the SSH-agent to organize the SSH-key authentification. Then, add your key
+
+```bash
+eval "$(ssh-agent -s)"
+
+## add key
+ssh-add ~/.ssh/id_ed25519
+```
+
+Finally, you will need to copy your PUBLIC key and set up GitHub SSH authetification on the webpage. Therefore go to the [settings](https://github.com/settings/keys) page of GitHub and navigate to the `SSH and GPG keys` tab. There, click on `New SSH key`.
+
+[key](images/GitHubVSCode/Gitkey1.png)
+
+Come up with a meaningful title, e.g. `VSCode`
+
+Back in the Terminal, you need to get and copy the PUBLIC key. Therefore, display the public key using the `cat` command.
+
+```bash
+cat ~/.ssh/id_ed25519.pub
+```
+
+This will print the public key to the console. Mark the full string shown in the terminal and right-click copy the string to your clipboard. Now paste the full string in the `Key` field in Github and press `Add SSH key`.
+
+[key](images/GitHubVSCode/Gitkey2.png)
+
+Finally, verify that It has worked in the Terminal by typing:
+
+```bash
+ssh -T git@github.com
+
+## Sucess!!
+Hi capoony! You've successfully authenticated, but GitHub does not provide shell access.
+```
+
+### 2. GitHub & VSCode
 
 Before you start, have a quick refresher what VSCode is and how VSCode works, see [here](https://GitHub.com/nhmvienna/FirstSteps/blob/main/VisualStudioCode_basics.md)
 
