@@ -42,7 +42,7 @@ ssh-add ~/.ssh/id_ed25519
 
 Finally, you will need to copy your PUBLIC key and set up GitHub SSH authetification on the webpage. Therefore go to the [settings](https://github.com/settings/keys) page of GitHub and navigate to the `SSH and GPG keys` tab. There, click on `New SSH key`.
 
-[key](images/GitHubVSCode/Gitkey1.jpg)
+[key](images/GitHubVSCode/Gitkey1.jpeg)
 
 Come up with a meaningful title, e.g. `VSCode`
 
