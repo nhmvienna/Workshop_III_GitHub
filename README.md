@@ -12,7 +12,8 @@ The first thing you will need to do is to set your Name and GitHub account email
 git config --global user.name "Your Name"
 git config --global user.email "<your@email.com>"
 ```
-Verify your configuration 
+
+Verify your configuration
 
 ```bash
 git config --list
@@ -76,7 +77,7 @@ Find login field on GitHub tab on the right of the VSCode window
 ![login](images/GitHubVSCode/Login.jpg)
 ![login2](images/GitHubVSCode/Login2.jpg)
 
-##### b) Clone a repository
+### 3. Clone a repository
 
 ```bash
 ## create GitHub directory in home folder
@@ -104,7 +105,7 @@ See also [here](shell/clone_repository.sh)
 
 Now add the newly cloned folder to the Workspace in VSCode by pressing `File` -> `Add Folder to Workspace...` and select the folder you just cloned.
 
-##### c) Publish a repo on GitHub
+### 4) Publish a repo to GitHub
 
 Create a new project folder which contains the data that you want to publish
 
@@ -116,7 +117,7 @@ mkdir -p ~/github/My2ndRepo/data
 cd ~/github/My2ndRepo
 
 ## lets add an empty text file in the data folder
-touch data/README.md
+touch data/TEST.md
 
 ## lets add a readme file in the main folder
 echo '''
@@ -152,7 +153,7 @@ echo "This is a second file in the data folder" > data/second_file.txt
 echo "This is a third file in the main folder" > third_file.txt
 ```
 
-- Open the source control tab on the left side of the VSCode window, which looks like a branch icon. Therefore use the shortcut `Ctrl+Alt+B` or click on the secondary side bar  icon on the top left side of the VSCode window.
+- Open the source control tab on the left side of the VSCode window, which looks like a branch icon. Therefore use the shortcut `Ctrl+Alt+B` or click on the secondary side bar icon on the top left side of the VSCode window.
 
 - Now, you can see the changes in the Source Control tab on the left side of the VSCode window.
 
@@ -164,23 +165,58 @@ echo "This is a third file in the main folder" > third_file.txt
 
 - Finally, you can push the changes to GitHub by clicking on the small button with the arrow pointing upwards at the top of the Source Control tab.
 
-#### d) let's check the changes online
+#### a) let's check the changes online
 
 ```bash
 open https://github.com/capoony/My2ndRepo
 ```
 
-#### e) let's make some additional changes online
+#### b) let's make some additional changes online
 
-- Go to the `README.md` file in the `My2ndRepo` repository on GitHub and click on the pencil icon to edit the file.
+- Go to the `README.md` file in the `My2ndRepo` repository on GitHub and click on the pencil icon to edit the file. Write some text, such as `This is my change on the *web*`.
 
-- In the sidebar on the right click on the three dots next to the repo name and choose `Fetch` to fetch the changes you made online.
+- Now go back to VSCode. In the sidebar on the right click on the three dots next to the repo name and choose `Fetch` to fetch the changes you made online.
 
 - Now you can see the changes in the Source Control tab on the left side of the VSCode window.
 
 - Pull the changes by clicking on the small button with arrow pointing downwards at the top of the Source Control tab.
 
-#### f) let's make some changes in VSCode
+#### c) let's make some changes in VSCode
+
+- On the server go to the `README.md` file in the `My2ndRepo` repository on your local machine and add a new line with the text `This is my change on **Phylo2**`.
+Then save the file.
+
+- Now you can see that the color of the file in the explorer on the left has changed to yellow.
+
+- Go to the Source Control sidebar tab and you will see that the Readme is in a dropdown menu called `Changes`, above is a blue button and on top a field to type a message. Now you can type a brief description of the changes you made in the text box .
+
+- Then click on the plus icon next to the file name to stage the changes, or click on the plus icon next to the "Changes" header to stage all changes at once.
+
+- Now you can commit by pressing the `Commit` button, which is also the checkmark icon at the top of the Source Control tab.
+
+- Finally, you can push the changes to GitHub by clicking on the small button with the arrow pointing upwards at the top of the Source Control tab.
+
+#### d) let's break the system
+
+- on the website, make a new file called `2Bbroken.txt` in the main folder
+
+- write the following text: `Hello`
+
+- commit the changes and go back to VSCode.
+
+- pull the new file by pressing `Fetch` followed by `Pull`
+
+- now go back to the website, make changes to the same file `Hel_lo` and commit.
+  
+- now edit the same file in VSCode to `Hell_o`, stage and commit - what happens???
+
+- the solution is to use `stash` to basically freeze your staged changes in the background on the computer, then pull the changes from the website and the use `pop` to bring back you changes in the background. Now you have the possibility to compare the changes and pick your favourite in the merge editor.
+
+- :warning: **Always PULL before you make changes to your code to make sure that you are working on the latest version**
+- :warning: **Only make changes on the website if REALLY necessary**
+- :warning: **Use branches, see below**
+
+#### e) branches
 
 - Go to the `README.md` file in the `My2ndRepo` repository on your local machine and add a new line with the text `new branch`.
 Then save the file.
@@ -198,3 +234,80 @@ Then save the file.
 - Now you can commit by pressing the `Commit` button, which is also the checkmark icon at the top of the Source Control tab.
 
 - Finally, you can push the changes to GitHub by clicking on the small button with the arrow pointing upwards at the top of the Source Control tab.
+
+- Go to the website and merge the two branches.
+
+#### f) restoring a specific commit
+
+Every commit in git is identified by a unique SHA-1 hash (e.g. `a3f5c2d`). You can use this hash to inspect or fully restore your repository to any earlier state — useful when you accidentally break something or want to recover a previous version of a file.
+
+**Step 1 — Find the commit you want to restore**
+
+In the terminal, list the commit history:
+
+```bash
+
+cd ~/github/My2ndRepo
+git log --oneline
+```
+
+This prints a compact list of all commits, most recent first:
+
+```
+e7b91a2 Fix typo in README
+a3f5c2d Add third_file.txt
+8d4e01f Initial commit
+```
+
+Copy the hash of the commit you want to go back to (e.g. `a3f5c2d`).
+
+You can also browse the history visually in VSCode by opening the Source Control tab and clicking on `View History`.
+
+**Step 2 — Inspect the old state without changing anything (safe)**
+
+To look at what the repository looked like at that commit without touching your current work:
+
+```bash
+git checkout a3f5c2d
+```
+
+Your repository is now in *detached HEAD* state — you are browsing the past. No changes are made to your branch. When you are done exploring, return to your branch:
+
+```bash
+git checkout main
+```
+
+**Step 3a — Restore a single file from an old commit**
+
+If you only want to recover one specific file (e.g. `README.md`) from an earlier commit, without touching anything else:
+
+```bash
+git checkout a3f5c2d -- README.md
+```
+
+The file is restored in your working directory and staged automatically. Review it, then commit:
+
+```bash
+git commit -m "Restore README.md from commit a3f5c2d"
+git push
+```
+
+**Step 3b — Restore the entire repository to an old commit (soft, keeps history)**
+
+The safest way to roll back everything while keeping your full commit history is `git revert`. It creates a new commit that undoes the changes introduced since the target commit:
+
+```bash
+## revert a single bad commit (undoes only that one commit)
+git revert a3f5c2d
+
+git push
+```
+
+If you need to undo a whole range of commits back to `a3f5c2d`:
+
+```bash
+## revert all commits from HEAD back to (but not including) a3f5c2d
+git revert a3f5c2d..HEAD
+
+git push
+```
