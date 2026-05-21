@@ -1,10 +1,29 @@
-# Workshop III - GitHub
+# Workshop III - GitHub & Data Management
 
-The slides to this workshop can be found [here](https://docs.google.com/presentation/d/1Gpgd5MocTWWqo_unQImQB14VJrkZsUmto1m_VaD_Ii0/edit?slide=id.g112930cb4ee_2_50#slide=id.g112930cb4ee_2_50)
+GitHub is a cloud-based platform for storing, sharing, and collaborating on code using **Git** — a version control system that tracks every change you make to your files. Whether you are working alone or in a team, Git and GitHub let you keep a full history of your project, experiment safely in branches, and merge contributions without losing work.
 
-For additional very basic info to the usage of git, see [here](https://GitHub.com/nhmvienna/FirstSteps/blob/main/UNIXBasics/UNIXBasics.md#vii-using-git-for-version-control)
+In this workshop you will learn how to create repositories, connect your local machine to GitHub, and manage changes through the VSCode editor.
 
-### 1. Git, GitHub and SSH authetication
+The slides to this workshop can be found [on Google Slides](https://docs.google.com/presentation/d/1Gpgd5MocTWWqo_unQImQB14VJrkZsUmto1m_VaD_Ii0/edit?slide=id.g112930cb4ee_2_50#slide=id.g112930cb4ee_2_50)
+
+For additional very basic info to the usage of git, see the [Git basics in UNIXBasics](https://GitHub.com/nhmvienna/FirstSteps/blob/main/UNIXBasics/UNIXBasics.md#vii-using-git-for-version-control)
+
+## Part A - Getting to know GitHub
+
+### 1. GitHub webpage
+
+The first task is to go to your GitHub webpage and create a new (first) Github Repo.
+
+- Create your first repository (`My1stRepo`, etc.) — click `+ New repository` on your GitHub homepage
+- Add a licence file (<https://choosealicense.com/licenses/>) — choose one during repo creation or add it afterwards
+- Create a `README.md` file and add a short description — tick the box during repo creation
+- Create a new text file in a folder — use the `Add file` button on the repo webpage
+- Add an image to the new folder — drag and drop an image file when adding a new file
+- Create a new branch and make edits to your `README.md` — use the branch dropdown on the repo webpage
+- Merge your new branch with the main branch — open a Pull Request and click `Merge`
+- Invite a collaborator — go to `Settings` → `Collaborators` and add their GitHub username
+
+### 2. Git, GitHub and SSH authentication
 
 The first thing you will need to do is to set your Name and GitHub account email to enable syncing to your GitHub cloud.
 
@@ -13,26 +32,26 @@ git config --global user.name "Your Name"
 git config --global user.email "<your@email.com>"
 ```
 
-Verify your configuration
+Verify your configuration:
 
 ```bash
 git config --list
 ```
 
-As a next step, you will need to set up an SSH-key, which GitHub can use to login from your computer to the GitHub account in the cloud. Password authetication is no longer supported. In terminal, you will need to set a new pair of private and public SSH keys
+As a next step, you will need to set up an SSH-key, which GitHub can use to authenticate your computer. Password authentication is no longer supported. SSH works with a **key pair**: a *private key* that stays on your machine (never share it!) and a *public key* that you give to GitHub. In the terminal, generate a new key pair with:
 
 ```bash
 ssh-keygen -t ed25519 -C "<your@email.com>"
 ```
 
-This will create two files in the hidden `./ssh/` directory of your home folder
+This will create two files in the hidden `~/.ssh/` directory of your home folder:
 
 ```bash
-~/.ssh/id_ed25519
-~/.ssh/id_ed25519.pub
+~/.ssh/id_ed25519      # your PRIVATE key — keep this secret
+~/.ssh/id_ed25519.pub  # your PUBLIC key  — this goes to GitHub
 ```
 
-Next, whe will start the SSH-agent to organize the SSH-key authentification. Then, add your key
+Next, we will start the SSH-agent to organize the SSH-key authentication. Then, add your key:
 
 ```bash
 eval "$(ssh-agent -s)"
@@ -41,11 +60,11 @@ eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_ed25519
 ```
 
-Finally, you will need to copy your PUBLIC key and set up GitHub SSH authetification on the webpage. Therefore go to the [settings](https://github.com/settings/keys) page of GitHub and navigate to the `SSH and GPG keys` tab. There, click on `New SSH key`.
+Finally, you will need to copy your PUBLIC key and set up GitHub SSH authentication on the webpage. Therefore go to the [settings](https://github.com/settings/keys) page of GitHub and navigate to the `SSH and GPG keys` tab. There, click on `New SSH key`.
 
 ![key](images/GitHubVSCode/Gitkey1.jpeg)
 
-Come up with a meaningful title, e.g. `VSCode`
+Come up with a meaningful title, e.g. `VSCode`.
 
 Back in the Terminal, you need to get and copy the PUBLIC key. Therefore, display the public key using the `cat` command.
 
@@ -57,27 +76,27 @@ This will print the public key to the console. Mark the full string shown in the
 
 ![key](images/GitHubVSCode/Gitkey2.jpg)
 
-Finally, verify that It has worked in the Terminal by typing:
+Finally, verify that it has worked in the terminal by typing:
 
 ```bash
 ssh -T git@github.com
 
-## Sucess!!
+## Success!!
 Hi capoony! You've successfully authenticated, but GitHub does not provide shell access.
 ```
 
-### 2. GitHub & VSCode
+### 3. GitHub & VSCode
 
-Before you start, have a quick refresher what VSCode is and how VSCode works, see [here](https://GitHub.com/nhmvienna/FirstSteps/blob/main/VisualStudioCode_basics.md)
+Now that your SSH key is set up, you can connect VSCode directly to your GitHub account. This allows you to stage, commit, push and pull without ever leaving the editor.
 
-##### a) setting up GitHub on VSCode
+Before you start, have a quick refresher what VSCode is and how VSCode works in the [VSCode basics guide](https://GitHub.com/nhmvienna/FirstSteps/blob/main/VisualStudioCode_basics.md)
 
-Find login field on GitHub tab on the right of the VSCode window
+Find the login field on the GitHub tab on the right of the VSCode window and sign in with your GitHub account.
 
 ![login](images/GitHubVSCode/Login.jpg)
 ![login2](images/GitHubVSCode/Login2.jpg)
 
-### 3. Clone a repository
+### 4. Clone a repository
 
 ```bash
 ## create GitHub directory in home folder
@@ -87,25 +106,26 @@ mkdir ~/github
 cd ~/github
 
 ## check if your git is set up correctly
+# (--global shows only the global config set in section 2)
 
 git config --global --list
 
 # 1) clone private My1stRepo repository
-
-# then enter the tocken when prompted
+# Replace 'capoony' with your own GitHub username and 'My1stRep' with your repo name
+# then enter the token when prompted
 
 git clone https://capoony@GitHub.com/capoony/My1stRep
 
-# 2) clone public repository
+# 2) clone this public repository
 
 git clone https://GitHub.com/nhmvienna/Workshop_III_GitHub
 ```
 
-See also [here](shell/clone_repository.sh)
+See also the [clone repository script](shell/clone_repository.sh)
 
-Now add the newly cloned folder to the Workspace in VSCode by pressing `File` -> `Add Folder to Workspace...` and select the folder you just cloned.
+Now add the newly cloned folder to the Workspace in VSCode by pressing `File` → `Add Folder to Workspace...` and select the folder you just cloned.
 
-### 4) Publish a repo to GitHub
+### 5. Publish a repo to GitHub
 
 Create a new project folder which contains the data that you want to publish
 
@@ -130,17 +150,16 @@ echo '''
 ''' > README.md
 ```
 
-Now add the newly created folder to the Workspace in VSCode by pressing `File` -> `Add Folder to Workspace...` and select the folder you just created.
+Now add the newly created folder to the Workspace in VSCode by pressing `File` → `Add Folder to Workspace...` and select the folder you just created.
 
 Then press `Ctrl+Shift+P` and type publish, or select `Publish to GitHub`
 
-A new /.git folder will appear within the project, which represents the git repository.
+A new `.git` folder will appear within the project, which represents the git repository.
 New files will appear in green as unstaged (and thus not yet version-controlled) files.
 
 Let's make a new gitignore file, which will tell git to ignore certain files or folders, in this case, we will ignore the data folder
 
 ```bash
-
 ## add gitignore file
 echo '''# ignore data folder
 data/
@@ -152,6 +171,8 @@ echo "This is a second file in the data folder" > data/second_file.txt
 ## lets make a third text file in the main folder
 echo "This is a third file in the main folder" > third_file.txt
 ```
+
+Before pushing to GitHub, changes go through two steps: **staging** (selecting which changes to include in the next snapshot) and **committing** (saving that snapshot with a message). Think of staging as packing a box and committing as sealing and labelling it.
 
 - Open the source control tab on the left side of the VSCode window, which looks like a branch icon. Therefore use the shortcut `Ctrl+Alt+B` or click on the secondary side bar icon on the top left side of the VSCode window.
 
@@ -168,8 +189,10 @@ echo "This is a third file in the main folder" > third_file.txt
 #### a) let's check the changes online
 
 ```bash
-open https://github.com/capoony/My2ndRepo
+xdg-open https://github.com/capoony/My2ndRepo
 ```
+
+> **Note:** Replace `capoony` with your own username. If `xdg-open` does not launch a browser, simply copy the URL and paste it into your browser manually.
 
 #### b) let's make some additional changes online
 
@@ -188,7 +211,7 @@ Then save the file.
 
 - Now you can see that the color of the file in the explorer on the left has changed to yellow.
 
-- Go to the Source Control sidebar tab and you will see that the Readme is in a dropdown menu called `Changes`, above is a blue button and on top a field to type a message. Now you can type a brief description of the changes you made in the text box .
+- Go to the Source Control sidebar tab and you will see that the Readme is in a dropdown menu called `Changes`, above is a blue button and on top a field to type a message. Now you can type a brief description of the changes you made in the text box.
 
 - Then click on the plus icon next to the file name to stage the changes, or click on the plus icon next to the "Changes" header to stage all changes at once.
 
@@ -197,6 +220,8 @@ Then save the file.
 - Finally, you can push the changes to GitHub by clicking on the small button with the arrow pointing upwards at the top of the Source Control tab.
 
 #### d) let's break the system
+
+A **merge conflict** occurs when the same part of a file has been changed in two different places (e.g. on the website and locally) and Git cannot automatically decide which version to keep. The following exercise deliberately creates this situation so you know how to resolve it.
 
 - on the website, make a new file called `2Bbroken.txt` in the main folder
 
@@ -210,13 +235,26 @@ Then save the file.
   
 - now edit the same file in VSCode to `Hell_o`, stage and commit - what happens???
 
-- the solution is to use `stash` to basically freeze your staged changes in the background on the computer, then pull the changes from the website and the use `pop` to bring back you changes in the background. Now you have the possibility to compare the changes and pick your favourite in the merge editor.
+- the solution is to use `stash` to basically freeze your staged changes in the background on the computer, then pull the changes from the website and then use `pop` to bring back your changes from the background. Now you have the possibility to compare the changes and pick your favourite in the merge editor.
+
+```bash
+## freeze your local changes
+git stash
+
+## pull the remote changes
+git pull
+
+## restore your local changes on top
+git stash pop
+```
 
 - :warning: **Always PULL before you make changes to your code to make sure that you are working on the latest version**
 - :warning: **Only make changes on the website if REALLY necessary**
 - :warning: **Use branches, see below**
 
 #### e) branches
+
+A **branch** is an independent parallel version of your repository. You can make changes on a branch without affecting the main code, and merge it back when you are happy with the result. This is the recommended way to develop new features or experiment safely.
 
 - Go to the `README.md` file in the `My2ndRepo` repository on your local machine and add a new line with the text `new branch`.
 Then save the file.
@@ -237,23 +275,22 @@ Then save the file.
 
 - Go to the website and merge the two branches.
 
-#### f) restoring a specific commit
+### 6. Restoring a specific commit
 
 Every commit in git is identified by a unique SHA-1 hash (e.g. `a3f5c2d`). You can use this hash to inspect or fully restore your repository to any earlier state — useful when you accidentally break something or want to recover a previous version of a file.
 
-**Step 1 — Find the commit you want to restore**
+#### Step 1 — Find the commit you want to restore
 
 In the terminal, list the commit history:
 
 ```bash
-
 cd ~/github/My2ndRepo
 git log --oneline
 ```
 
 This prints a compact list of all commits, most recent first:
 
-```
+```text
 e7b91a2 Fix typo in README
 a3f5c2d Add third_file.txt
 8d4e01f Initial commit
@@ -263,26 +300,26 @@ Copy the hash of the commit you want to go back to (e.g. `a3f5c2d`).
 
 You can also browse the history visually in VSCode by opening the Source Control tab and clicking on `View History`.
 
-**Step 2 — Inspect the old state without changing anything (safe)**
+#### Step 2 — Inspect the old state without changing anything (safe)
 
 To look at what the repository looked like at that commit without touching your current work:
 
 ```bash
-git checkout a3f5c2d
+git switch --detach a3f5c2d
 ```
 
 Your repository is now in *detached HEAD* state — you are browsing the past. No changes are made to your branch. When you are done exploring, return to your branch:
 
 ```bash
-git checkout main
+git switch main
 ```
 
-**Step 3a — Restore a single file from an old commit**
+#### Step 3a — Restore a single file from an old commit
 
 If you only want to recover one specific file (e.g. `README.md`) from an earlier commit, without touching anything else:
 
 ```bash
-git checkout a3f5c2d -- README.md
+git restore --source=a3f5c2d README.md
 ```
 
 The file is restored in your working directory and staged automatically. Review it, then commit:
@@ -292,7 +329,7 @@ git commit -m "Restore README.md from commit a3f5c2d"
 git push
 ```
 
-**Step 3b — Restore the entire repository to an old commit (soft, keeps history)**
+#### Step 3b — Restore the entire repository to an old commit (soft, keeps history)
 
 The safest way to roll back everything while keeping your full commit history is `git revert`. It creates a new commit that undoes the changes introduced since the target commit:
 
@@ -310,4 +347,60 @@ If you need to undo a whole range of commits back to `a3f5c2d`:
 git revert a3f5c2d..HEAD
 
 git push
+```
+
+## Part B - Data Management
+
+Here we demonstrate how to find large and uncompressed files in a project folder, compress them to save disk space, and evaluate whether they can be cleaned up.
+
+A useful command to check folder sizes at any time is:
+
+```bash
+## print a human-readable summary of disk usage for a folder
+du -hs <folder>
+```
+
+### 1. Find large files
+
+Navigate to the DataManagement pipeline and inspect the available scripts:
+
+```bash
+## go to the pipeline directory
+cd /media/inter/pipelines/DataManagement
+
+## list scripts with sizes and timestamps
+ls -lht
+```
+
+Use `FindBIGdata.sh` to scan a project folder for large uncompressed and compressed files. The results are written to a `cleanup/` subfolder inside the target directory:
+
+```bash
+## --target  the project folder to scan
+## --size    minimum file size in MB to report (here: 300 MB)
+sh FindBIGdata.sh \
+    --target /media/inter/mkapun/projects/ArdeaInsignis_PopGen \
+    --size 300
+```
+
+### 2. Compress large files
+
+Once `FindBIGdata.sh` has run, use `CompressBIGdata.sh` to compress the files it found. Only `--target` is needed — the script automatically picks up all file lists in the `cleanup/` folder:
+
+```bash
+## --target  same project folder used in FindBIGdata.sh
+## compresses uncompressed files found in cleanup/ using pigz
+sh CompressBIGdata.sh \
+    --target /media/inter/mkapun/projects/ArdeaInsignis_PopGen
+```
+
+### 3. Create a new project folder
+
+Use `template_projectfolders.sh` to scaffold a new project directory with all standard subfolders and a `README.md`:
+
+```bash
+## create a new project folder with subfolders: data/, results/, shell/, scripts/
+sh template_projectfolders.sh /media/inter/mkapun/projects/NewCOOLDrosoProject
+
+## verify the folder structure was created
+ls -lht /media/inter/mkapun/projects/NewCOOLDrosoProject
 ```
