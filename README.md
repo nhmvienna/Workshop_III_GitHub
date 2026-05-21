@@ -114,7 +114,7 @@ git config --global --list
 # Replace 'capoony' with your own GitHub username and 'My1stRep' with your repo name
 # then enter the token when prompted
 
-git clone https://capoony@GitHub.com/capoony/My1stRep
+git clone git@github.com:capoony/My1stRepo.git
 
 # 2) clone this public repository
 
