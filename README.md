@@ -111,8 +111,7 @@ cd ~/github
 git config --global --list
 
 # 1) clone private My1stRepo repository
-# Replace 'capoony' with your own GitHub username and 'My1stRep' with your repo name
-# then enter the token when prompted
+# Replace 'capoony' with your own GitHub username and 'My1stRepo' with your repo name
 
 git clone git@github.com:capoony/My1stRepo.git
 
